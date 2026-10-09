@@ -106,7 +106,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/root/rust-mumble
-ExecStart=/root/rust-mumble/target/release/rust-mumble --cert /root/rust-mumble/cert.pem --key /root/rust-mumble/key.pem --listen 0.0.0.0:55500 --http-listen 0.0.0.0:8080 --http-password dummy --restrict-to-version CitizenFX
+ExecStart=/root/rust-mumble/target/release/rust-mumble --cert /root/rust-mumble/cert.pem --key /root/rust-mumble/key.pem --listen-address 0.0.0.0:55500 --http-listen 0.0.0.0:8080 --http-password dummy --restrict-to-version CitizenFX
 Restart=always
 LimitNOFILE=1048576
 
@@ -119,7 +119,7 @@ success "Systemd service created"
 step "Reloading systemd and enabling Rust-Mumble service"
 sudo systemctl daemon-reload &>/dev/null
 sudo systemctl enable rust-mumble &>/dev/null
-sudo systemctl start rust-mumble &
+sudo systemctl restart rust-mumble &
 spinner
 success "Rust-Mumble service started"
 
